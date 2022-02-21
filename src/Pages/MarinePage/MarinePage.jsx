@@ -1,4 +1,12 @@
-import { Container, Row, Col, Button, Table, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MarinesProvider } from '../../Providers/MarinesProviders'
@@ -23,52 +31,58 @@ export default function MarinePage() {
     }
   }
 
-  let displayMarines = marines.map((marine, indice) =>{
-    return(
-
-      <Container  key={indice + 1}>
+  let displayMarines = marines.map((marine, indice) => {
+    return (
+      <Container key={indice + 1}>
         <Col>
-            <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src= {marine.photo} />
-        <Card.Body>
-          <Card.Title>{marine.prenom} {marine.nom}</Card.Title>
-          <Card.Text>
-          Commentaire personnalisé : {marine.commentaire}
-          </Card.Text>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-          <ListGroupItem>Grade : {marine.grade}</ListGroupItem>
-          </ListGroup>
-          <Card.Body>
-          <Button as={Link} to={'/marines/' + marine.id} variant="warning">
-                  Modifier
-              </Button>   <Button variant="danger" onClick={() => remove(marine)}>
-                  Supprimer
-                </Button>
-        </Card.Body>
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={marine.photo} />
+            <Card.Body>
+              <Card.Title>
+                {marine.prenom} {marine.nom}
+              </Card.Title>
+              <Card.Text>
+                Commentaire personnalisé : {marine.commentaire}
+              </Card.Text>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>Grade : {marine.grade}</ListGroupItem>
+            </ListGroup>
+            <Card.Body>
+              <Button as={Link} to={'/marines/' + marine.id} variant="warning">
+                Modifier
+              </Button>
+              <Button variant="danger" onClick={() => remove(marine)}>
+                Supprimer
+              </Button>
+            </Card.Body>
           </Card>
         </Col>
-</Container>
+      </Container>
     )
   })
-
-
   return (
     <>
+      <Container>
         <Row>
-          <Col md={12}>
+          <Col>
+            <h1>Gestion des membres de la Marine</h1>
+            <hr />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={5}>
             <div className="mb-3">
               <Button as={Link} to="/marines/add">
                 Ajouter un membre de la Marine
               </Button>
             </div>
-            </Col>
+          </Col>
         </Row>
+      </Container>
 
-<br></br>
-
-
-{displayMarines}
+      <br></br>
+      {displayMarines}
     </>
   )
 }

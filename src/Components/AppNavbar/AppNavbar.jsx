@@ -17,10 +17,10 @@ export default function AppNavbar() {
             <Nav.Link as={Link} to="/marines">
               Marines
             </Nav.Link>
-            <Nav.Link as={Link} to="/joueurs">
+            <Nav.Link as={Link} to="/pirates">
               Pirates
             </Nav.Link>
-            <Nav.Link as={Link} to="/joueurs">
+            <Nav.Link as={Link} to="/shichibukai">
               Shichibukai
             </Nav.Link>
           </Nav>
