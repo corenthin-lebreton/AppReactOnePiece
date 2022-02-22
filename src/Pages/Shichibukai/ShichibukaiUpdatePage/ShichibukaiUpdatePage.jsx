@@ -6,12 +6,13 @@ import {
   Button,
   FloatingLabel,
 } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { ShichibukaiProvider } from '../../Providers/ShichibukaiProvider'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { ShichibukaiProvider } from '../../../Providers/ShichibukaiProvider'
 
-export default function ShichibukaiAddPage() {
-  const [formAdd, setFormAdd] = useState({
+export default function ShichibukaiUpdatePage() {
+  const [shichibukai, setShichibukai] = useState({})
+  const [formUpdate, setFormUpdate] = useState({
     id: '',
     prenom: '',
     nom: '',
@@ -19,8 +20,8 @@ export default function ShichibukaiAddPage() {
     photo: '',
     commentaire: '',
   })
-
   const shichibukaiProvider = new ShichibukaiProvider()
+  const { id } = useParams()
   const navigate = useNavigate()
 
   const uploadImage = async e => {
@@ -40,15 +41,32 @@ export default function ShichibukaiAddPage() {
     const file = await res.json()
     console.log(file)
 
-    setFormAdd(previous => {
+    setFormUpdate(previous => {
       return { ...previous, photo: file.secure_url }
     })
   }
 
-  function add(e) {
+  useEffect(() => {
+    let tmpShichibukai = shichibukaiProvider.getShichibukaiById(id)
+
+    if (!tmpShichibukai) {
+      alert('Shichibukai non trouvé dans la base')
+      navigate('/shichibukai')
+    } else {
+      setShichibukai(tmpShichibukai)
+      setFormUpdate(tmpShichibukai)
+    }
+  }, [id, navigate])
+
+  function update(e) {
     e.preventDefault()
-    shichibukaiProvider.add(formAdd)
-    navigate('/shichibukai')
+    let res = shichibukaiProvider.update(formUpdate)
+    if (res) navigate('/shichibukai')
+    else alert("Erreur lors de l'enregistrement")
+  }
+
+  function reset() {
+    setFormUpdate(shichibukai)
   }
 
   return (
@@ -56,39 +74,38 @@ export default function ShichibukaiAddPage() {
       <Container>
         <Row>
           <Col>
-            <h1>Ajouter un shichibukai</h1>
+            <h1>Modifier un shichibukai</h1>
             <hr />
           </Col>
         </Row>
 
         <Row>
           <Col md={6}>
-            <Form onSubmit={e => add(e)}>
+            <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
-                  value={formAdd.prenom}
+                  placeholder="Modifier le prenom"
+                  value={formUpdate.prenom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.prenom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
               </Form.Group>
-
               <Form.Group className="mb-3">
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
-                  value={formAdd.nom}
+                  placeholder="Modifier le nom"
+                  value={formUpdate.nom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.nom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -98,12 +115,12 @@ export default function ShichibukaiAddPage() {
                 <Form.Label>Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Enter le montant de la prime"
-                  value={formAdd.prime}
+                  placeholder="Modifier le montant de la prime"
+                  value={formUpdate.prime}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.prime = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -114,20 +131,20 @@ export default function ShichibukaiAddPage() {
                 controlId="floatingTextarea"
                 label="commentaire"
                 className="mb-3"
+                value={formUpdate.commentaire}
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="commentaire presonnalisé"
-                  value={formAdd.commentaire}
+                  placeholder="Modifier un commentaire"
+                  value={formUpdate.commentaire}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.commentaire = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
               </FloatingLabel>
-
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
@@ -143,6 +160,7 @@ export default function ShichibukaiAddPage() {
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
+                onClick={reset}
               >
                 Annuler
               </Button>

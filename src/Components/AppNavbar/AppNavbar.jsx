@@ -6,7 +6,7 @@ export default function AppNavbar() {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          App BTC-SPA
+        <img src ="https://res.cloudinary.com/firewax/image/upload/v1645527171/logo_knbcve.png"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

@@ -6,23 +6,20 @@ import {
   Button,
   FloatingLabel,
 } from 'react-bootstrap'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { ShichibukaiProvider } from '../../Providers/ShichibukaiProvider'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { PiratesProvider } from '../../../Providers/PiratesProvider'
 
-export default function ShichibukaiUpdatePage() {
-  const [shichibukai, setShichibukai] = useState({})
-  const [formUpdate, setFormUpdate] = useState({
+export default function PirateAddPage() {
+  const [formAdd, setFormAdd] = useState({
     id: '',
     prenom: '',
     nom: '',
+    equipage: '',
     prime: '',
     photo: '',
     commentaire: '',
   })
-  const shichibukaiProvider = new ShichibukaiProvider()
-  const { id } = useParams()
-  const navigate = useNavigate()
 
   const uploadImage = async e => {
     const files = e.target.files
@@ -41,32 +38,18 @@ export default function ShichibukaiUpdatePage() {
     const file = await res.json()
     console.log(file)
 
-    setFormUpdate(previous => {
+    setFormAdd(previous => {
       return { ...previous, photo: file.secure_url }
     })
   }
 
-  useEffect(() => {
-    let tmpShichibukai = shichibukaiProvider.getShichibukaiById(id)
+  const piratesProvider = new PiratesProvider()
+  const navigate = useNavigate()
 
-    if (!tmpShichibukai) {
-      alert('Shichibukai non trouvé dans la base')
-      navigate('/shichibukai')
-    } else {
-      setShichibukai(tmpShichibukai)
-      setFormUpdate(tmpShichibukai)
-    }
-  }, [id, navigate])
-
-  function update(e) {
+  function add(e) {
     e.preventDefault()
-    let res = shichibukaiProvider.update(formUpdate)
-    if (res) navigate('/shichibukai')
-    else alert("Erreur lors de l'enregistrement")
-  }
-
-  function reset() {
-    setFormUpdate(shichibukai)
+    piratesProvider.add(formAdd)
+    navigate('/pirates')
   }
 
   return (
@@ -74,24 +57,24 @@ export default function ShichibukaiUpdatePage() {
       <Container>
         <Row>
           <Col>
-            <h1>Modifier un shichibukai</h1>
+            <h1>Ajouter un pirate</h1>
             <hr />
           </Col>
         </Row>
 
         <Row>
           <Col md={6}>
-            <Form onSubmit={e => update(e)}>
+            <Form onSubmit={e => add(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Modifier le prenom"
-                  value={formUpdate.prenom}
+                  placeholder="Enter prenom"
+                  value={formAdd.prenom}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.prenom = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
@@ -100,12 +83,27 @@ export default function ShichibukaiUpdatePage() {
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Modifier le nom"
-                  value={formUpdate.nom}
+                  placeholder="Enter nom"
+                  value={formAdd.nom}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.nom = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
+                  }}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Équipage</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter le nom de l'équipage"
+                  value={formAdd.equipage}
+                  onChange={e => {
+                    let tmp = { ...formAdd }
+                    tmp.equipage = e.target.value
+                    setFormAdd(tmp)
                   }}
                   required
                 />
@@ -115,32 +113,32 @@ export default function ShichibukaiUpdatePage() {
                 <Form.Label>Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Modifier le montant de la prime"
-                  value={formUpdate.prime}
+                  placeholder="Enter le montant de la prime"
+                  value={formAdd.prime}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.prime = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
               </Form.Group>
 
               <Form.Label>Commentaire</Form.Label>
+
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="commentaire"
                 className="mb-3"
-                value={formUpdate.commentaire}
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="Modifier un commentaire"
-                  value={formUpdate.commentaire}
+                  placeholder="commentaire presonnalisé"
+                  value={formAdd.commentaire}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.commentaire = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
@@ -152,7 +150,7 @@ export default function ShichibukaiUpdatePage() {
 
               <hr />
 
-              <Button variant="light" as={Link} to="/shichibukai">
+              <Button variant="light" as={Link} to="/pirates">
                 Retour
               </Button>
 
@@ -160,7 +158,6 @@ export default function ShichibukaiUpdatePage() {
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
-                onClick={reset}
               >
                 Annuler
               </Button>

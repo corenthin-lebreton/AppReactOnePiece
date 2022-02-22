@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { MarinesProvider } from '../../Providers/MarinesProviders'
+import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
 export default function MarinePage() {
   const [marines, setMarines] = useState([])
@@ -42,7 +42,7 @@ export default function MarinePage() {
                 {marine.prenom} {marine.nom}
               </Card.Title>
               <Card.Text>
-                Commentaire personnalisé : {marine.commentaire}
+                Commentaire : {marine.commentaire}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">

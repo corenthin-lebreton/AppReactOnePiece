@@ -6,79 +6,93 @@ import {
   Button,
   FloatingLabel,
 } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { MarinesProvider } from '../../Providers/MarinesProviders'
-export default function MarineAddPage() {
-  const [image, setImage] = useState("")
-  const [formAdd, setFormAdd] = useState({
+import { MarinesProvider } from '../../../Providers/MarinesProviders'
+
+export default function MarineUpdatePage() {
+  const [marine, setMarine] = useState({})
+  const [formUpdate, setFormUpdate] = useState({
     id: '',
     prenom: '',
     nom: '',
     grade: '',
-    commentaire: '',
     photo: '',
+    commentaire: '',
   })
-
   const marinesProvider = new MarinesProvider()
+  const { id } = useParams()
   const navigate = useNavigate()
 
-const uploadImage = async e => {
-  const files = e.target.files
-  const data = new FormData()
-  data.append('file', files[0])
-  data.append('upload_preset', 'jxnellvh')
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'jxnellvh')
 
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/firewax/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    )
 
-  const res = await fetch("https://api.cloudinary.com/v1_1/firewax/image/upload",
-  {
-    method: 'POST',
-    body:data
-  })
+    const file = await res.json()
+    console.log(file)
 
-const file = await res.json()
-console.log(file)
-
-
-setFormAdd((previous)=>{
-    return {
-      ...previous,
-      photo:file.secure_url
-    }
-})
-
-
-
-}
-  function add(e) {
-    e.preventDefault()
-    marinesProvider.add(formAdd)
-    navigate('/marines')
+    setFormUpdate(previous => {
+      return { ...previous, photo: file.secure_url }
+    })
   }
 
-  return (
+  useEffect(() => {
+    let tmpMarine = marinesProvider.getMarineById(id)
+
+    if (!tmpMarine) {
+      alert('Marine non trouvé dans la base')
+      navigate('/marines')
+    } else {
+      setMarine(tmpMarine)
+      setFormUpdate(tmpMarine)
+    }
+  }, [id, navigate])
+
+  function update(e) {
+    e.preventDefault()
+    let res = marinesProvider.update(formUpdate)
+    if (res) navigate('/marines')
+    else alert("Erreur lors de l'enregistrement")
+  }
+
+  function reset() {
+    setFormUpdate(marine)
+  }
+
+
+return (
     <>
       <Container>
         <Row>
           <Col>
-            <h1>Ajouter un membre de la marine</h1>
+            <h1>Modifier un membre de la marine</h1>
             <hr />
           </Col>
         </Row>
 
         <Row>
           <Col md={6}>
-            <Form onSubmit={e => add(e)}>
+            <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
-                  value={formAdd.prenom}
+                  placeholder="Modifier le prenom"
+                  value={formUpdate.prenom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.prenom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -87,31 +101,34 @@ setFormAdd((previous)=>{
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
-                  value={formAdd.nom}
+                  placeholder="Modifier le nom"
+                  value={formUpdate.nom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.nom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
               </Form.Group>
-              <Form.Group className="mb-3">
+<Form.Group className="mb-3">
                 <Form.Label>Grade</Form.Label>
-                <Form.Select onChange={e => {
-                    let tmp = { ...formAdd }
+                <Form.Select
+                  value={formUpdate.grade}
+                  onChange={e => {
+                    let tmp = { ...formUpdate }
                     tmp.grade = e.target.value
-                    setFormAdd(tmp)}}
-                    required
-                    >
-                  <option value ="">Choisissez un grade</option> 
-                  <option>Amiral en Chef</option>
+                    setFormUpdate(tmp)
+                  }}
+                  required
+                >
+                  <option value="">Choisissez un grade</option>
+                  <option>Amiral en chef</option>
                   <option>Amiral</option>
                   <option>Vice-Amiral</option>
                   <option>Contre-Amiral</option>
                   <option>Commodore</option>
-                  <option>Colonnel</option>
+                  <option>Colonel</option>
                   <option>Commandant</option>
                   <option>Lieutenant-Colonel</option>
                   <option>Lieutenant</option>
@@ -124,36 +141,32 @@ setFormAdd((previous)=>{
                   <option>Matelot 1ère classe</option>
                   <option>Matelot 2ème classe</option>
                   <option>Matelot 3ème classe</option>
-                  <option>Homme de Corvée</option>   
-
-                 </Form.Select>
-                </Form.Group>
-
+                  <option>Homme de corvée</option>
+                </Form.Select>
+              </Form.Group>
               <Form.Label>Commentaire</Form.Label>
 
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="commentaire"
                 className="mb-3"
+                value={formUpdate.commentaire}
               >
-                <Form.Control
+            <Form.Control
                   as="textarea"
-                  placeholder="Commentaire personnalisé"
-                  value={formAdd.commentaire}
+                  placeholder="Modifier le commentaire"
+                  value={formUpdate.commentaire}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.commentaire = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
               </FloatingLabel>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Image du personnage</Form.Label>
-                <Form.Control type="file"
-                  onChange={uploadImage} 
-                  
-                /> 
+                <Form.Control type="file" onChange={uploadImage} />
               </Form.Group>
 
               <hr />
@@ -165,7 +178,8 @@ setFormAdd((previous)=>{
               <Button
                 variant="outline-secondary"
                 className="float-end mx-2"
-                as={Link} to="/"
+                type="reset"
+                onClick={reset}
               >
                 Annuler
               </Button>
@@ -177,8 +191,6 @@ setFormAdd((previous)=>{
           </Col>
         </Row>
       </Container>
-
-      <img src={image}></img>
     </>
   )
 }

@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { PiratesProvider } from '../../Providers/PiratesProvider'
+import { PiratesProvider } from '../../../Providers/PiratesProvider'
 
 export default function PiratePage() {
   const [pirates, setPirates] = useState([])
@@ -42,7 +42,7 @@ export default function PiratePage() {
                 {pirate.prenom} {pirate.nom}
               </Card.Title>
               <Card.Text>
-                Commentaire personnalisé : {pirate.commentaire}
+                Commentaire : {pirate.commentaire}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">

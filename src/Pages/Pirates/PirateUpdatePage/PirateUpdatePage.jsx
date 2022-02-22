@@ -6,12 +6,13 @@ import {
   Button,
   FloatingLabel,
 } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { PiratesProvider } from '../../Providers/PiratesProvider'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { PiratesProvider } from '../../../Providers/PiratesProvider'
 
-export default function PirateAddPage() {
-  const [formAdd, setFormAdd] = useState({
+export default function PirateUpdatePage() {
+  const [pirate, setPirate] = useState({})
+  const [formUpdate, setFormUpdate] = useState({
     id: '',
     prenom: '',
     nom: '',
@@ -20,6 +21,10 @@ export default function PirateAddPage() {
     photo: '',
     commentaire: '',
   })
+
+  const piratesProvider = new PiratesProvider()
+  const { id } = useParams()
+  const navigate = useNavigate()
 
   const uploadImage = async e => {
     const files = e.target.files
@@ -38,18 +43,32 @@ export default function PirateAddPage() {
     const file = await res.json()
     console.log(file)
 
-    setFormAdd(previous => {
+    setFormUpdate(previous => {
       return { ...previous, photo: file.secure_url }
     })
   }
 
-  const piratesProvider = new PiratesProvider()
-  const navigate = useNavigate()
+  useEffect(() => {
+    let tmpPirate = piratesProvider.getPirateById(id)
 
-  function add(e) {
+    if (!tmpPirate) {
+      alert('Pirate non trouvé dans la base')
+      navigate('/pirates')
+    } else {
+      setPirate(tmpPirate)
+      setFormUpdate(tmpPirate)
+    }
+  }, [id, navigate])
+
+  function update(e) {
     e.preventDefault()
-    piratesProvider.add(formAdd)
-    navigate('/pirates')
+    let res = piratesProvider.update(formUpdate)
+    if (res) navigate('/pirates')
+    else alert("Erreur lors de l'enregistrement")
+  }
+
+  function reset() {
+    setFormUpdate(pirate)
   }
 
   return (
@@ -57,24 +76,24 @@ export default function PirateAddPage() {
       <Container>
         <Row>
           <Col>
-            <h1>Ajouter un pirate</h1>
+            <h1>Modifier un pirate</h1>
             <hr />
           </Col>
         </Row>
 
         <Row>
           <Col md={6}>
-            <Form onSubmit={e => add(e)}>
+            <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
-                  value={formAdd.prenom}
+                  placeholder="Modifier le prenom"
+                  value={formUpdate.prenom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.prenom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -83,27 +102,26 @@ export default function PirateAddPage() {
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
-                  value={formAdd.nom}
+                  placeholder="Modifier le nom"
+                  value={formUpdate.nom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.nom = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
               </Form.Group>
-
               <Form.Group className="mb-3">
                 <Form.Label>Équipage</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter le nom de l'équipage"
-                  value={formAdd.equipage}
+                  placeholder="Modifier le nom de l'équipage"
+                  value={formUpdate.equipage}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.equipage = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -113,12 +131,12 @@ export default function PirateAddPage() {
                 <Form.Label>Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Enter le montant de la prime"
-                  value={formAdd.prime}
+                  placeholder="Modifier le montant de la prime"
+                  value={formUpdate.prime}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.prime = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -130,15 +148,16 @@ export default function PirateAddPage() {
                 controlId="floatingTextarea"
                 label="commentaire"
                 className="mb-3"
+                value={formUpdate.commentaire}
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="commentaire presonnalisé"
-                  value={formAdd.commentaire}
+                  placeholder="Modifier un commentaire"
+                  value={formUpdate.commentaire}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formUpdate }
                     tmp.commentaire = e.target.value
-                    setFormAdd(tmp)
+                    setFormUpdate(tmp)
                   }}
                   required
                 />
@@ -158,6 +177,7 @@ export default function PirateAddPage() {
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
+                onClick={reset}
               >
                 Annuler
               </Button>

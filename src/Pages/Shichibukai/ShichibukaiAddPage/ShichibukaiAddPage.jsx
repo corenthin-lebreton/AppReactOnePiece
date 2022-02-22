@@ -6,24 +6,21 @@ import {
   Button,
   FloatingLabel,
 } from 'react-bootstrap'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { PiratesProvider } from '../../Providers/PiratesProvider'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { ShichibukaiProvider } from '../../../Providers/ShichibukaiProvider'
 
-export default function PirateUpdatePage() {
-  const [pirate, setPirate] = useState({})
-  const [formUpdate, setFormUpdate] = useState({
+export default function ShichibukaiAddPage() {
+  const [formAdd, setFormAdd] = useState({
     id: '',
     prenom: '',
     nom: '',
-    equipage: '',
     prime: '',
     photo: '',
     commentaire: '',
   })
 
-  const piratesProvider = new PiratesProvider()
-  const { id } = useParams()
+  const shichibukaiProvider = new ShichibukaiProvider()
   const navigate = useNavigate()
 
   const uploadImage = async e => {
@@ -43,32 +40,15 @@ export default function PirateUpdatePage() {
     const file = await res.json()
     console.log(file)
 
-    setFormUpdate(previous => {
+    setFormAdd(previous => {
       return { ...previous, photo: file.secure_url }
     })
   }
 
-  useEffect(() => {
-    let tmpPirate = piratesProvider.getPirateById(id)
-
-    if (!tmpPirate) {
-      alert('Pirate non trouvé dans la base')
-      navigate('/pirates')
-    } else {
-      setPirate(tmpPirate)
-      setFormUpdate(tmpPirate)
-    }
-  }, [id, navigate])
-
-  function update(e) {
+  function add(e) {
     e.preventDefault()
-    let res = piratesProvider.update(formUpdate)
-    if (res) navigate('/pirates')
-    else alert("Erreur lors de l'enregistrement")
-  }
-
-  function reset() {
-    setFormUpdate(pirate)
+    shichibukaiProvider.add(formAdd)
+    navigate('/shichibukai')
   }
 
   return (
@@ -76,52 +56,39 @@ export default function PirateUpdatePage() {
       <Container>
         <Row>
           <Col>
-            <h1>Modifier un pirate</h1>
+            <h1>Ajouter un shichibukai</h1>
             <hr />
           </Col>
         </Row>
 
         <Row>
           <Col md={6}>
-            <Form onSubmit={e => update(e)}>
+            <Form onSubmit={e => add(e)}>
               <Form.Group className="mb-3">
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Modifier le prenom"
-                  value={formUpdate.prenom}
+                  placeholder="Enter prenom"
+                  value={formAdd.prenom}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.prenom = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
               </Form.Group>
+
               <Form.Group className="mb-3">
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Modifier le nom"
-                  value={formUpdate.nom}
+                  placeholder="Enter nom"
+                  value={formAdd.nom}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.nom = e.target.value
-                    setFormUpdate(tmp)
-                  }}
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Équipage</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Modifier le nom de l'équipage"
-                  value={formUpdate.equipage}
-                  onChange={e => {
-                    let tmp = { ...formUpdate }
-                    tmp.equipage = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
@@ -131,37 +98,36 @@ export default function PirateUpdatePage() {
                 <Form.Label>Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Modifier le montant de la prime"
-                  value={formUpdate.prime}
+                  placeholder="Enter le montant de la prime"
+                  value={formAdd.prime}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.prime = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
               </Form.Group>
 
               <Form.Label>Commentaire</Form.Label>
-
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="commentaire"
                 className="mb-3"
-                value={formUpdate.commentaire}
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="Modifier un commentaire"
-                  value={formUpdate.commentaire}
+                  placeholder="commentaire presonnalisé"
+                  value={formAdd.commentaire}
                   onChange={e => {
-                    let tmp = { ...formUpdate }
+                    let tmp = { ...formAdd }
                     tmp.commentaire = e.target.value
-                    setFormUpdate(tmp)
+                    setFormAdd(tmp)
                   }}
                   required
                 />
               </FloatingLabel>
+
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
@@ -169,7 +135,7 @@ export default function PirateUpdatePage() {
 
               <hr />
 
-              <Button variant="light" as={Link} to="/pirates">
+              <Button variant="light" as={Link} to="/shichibukai">
                 Retour
               </Button>
 
@@ -177,7 +143,6 @@ export default function PirateUpdatePage() {
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
-                onClick={reset}
               >
                 Annuler
               </Button>

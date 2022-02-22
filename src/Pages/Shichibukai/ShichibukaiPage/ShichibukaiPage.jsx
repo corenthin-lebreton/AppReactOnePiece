@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ShichibukaiProvider } from '../../Providers/ShichibukaiProvider'
+import { ShichibukaiProvider } from '../../../Providers/ShichibukaiProvider'
 
 export default function ShichibukaiPage() {
   const [shichibukai, setShichibukai] = useState([])
@@ -42,7 +42,7 @@ export default function ShichibukaiPage() {
                 {shichibukai.prenom} {shichibukai.nom}
               </Card.Title>
               <Card.Text>
-                Commentaire personnalisé : {shichibukai.commentaire}
+                Commentaire : {shichibukai.commentaire}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
