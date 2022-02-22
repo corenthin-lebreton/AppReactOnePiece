@@ -8,7 +8,8 @@ export default function HomePage() {
   const [dataPirate, setDataPirate] = useState([])
   const [dataShichibukai, setDataShichibukai] = useState([])
 
-
+// récupération de chaque bdd dans le localstorage
+// on stocke le contenu de chque bdd dans une variable du use state : dataMarine, dataPirate, dataShichibukai
   useEffect(()=>{
     let data = localStorage.getItem('spa-marines')
         ? localStorage.getItem('spa-marines')
@@ -36,7 +37,7 @@ useEffect(()=>{
 }, [])
 
 
-
+// on affiche le nombre d'élements à l'aide du .length
 
   return (
     <div className="App">

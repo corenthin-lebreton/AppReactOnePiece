@@ -12,11 +12,20 @@ import { useEffect, useState } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
 export default function MarinePage() {
+
   const [marines, setMarines] = useState([])
   const MarinesProviders = new MarinesProvider()
 
+  // UseEffect où on récupère le contenu du la bdd spa-marines dans un usestate (marine)
+
+
   useEffect(() => {
+    //on utilise une fonction du provider qui récupère les élements du localstorage
+
     let datas = MarinesProviders.getMarines()
+
+    // on le stock dans le usestate marines, à l'aide de setMarines
+
     setMarines(datas)
   }, [])
 
@@ -31,6 +40,10 @@ export default function MarinePage() {
     }
   }
 
+
+  // permet de faire un affichage pour chaque personnage crée à l'aide du .map
+  // on utilise le usestate marines pour récupérer l'ensemble du contenu du localstorage stocker dedans, on utilise le paramètre marine pour 
+  //récupérer le nom, prenom, image etc
   let displayMarines = marines.map((marine, indice) => {
     return (
       <Container key={indice + 1}>

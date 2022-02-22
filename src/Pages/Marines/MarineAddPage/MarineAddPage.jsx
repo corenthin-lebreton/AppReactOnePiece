@@ -9,7 +9,10 @@ import {
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
+
 export default function MarineAddPage() {
+
+
   const [image, setImage] = useState("")
   const [formAdd, setFormAdd] = useState({
     id: '',
@@ -23,12 +26,16 @@ export default function MarineAddPage() {
   const marinesProvider = new MarinesProvider()
   const navigate = useNavigate()
 
+
+// Upload de L'image vers un cloud et le LocalStorage
+// fonction asynchrone qui récupère l'image  vers le profil du cloud
 const uploadImage = async e => {
   const files = e.target.files
   const data = new FormData()
   data.append('file', files[0])
   data.append('upload_preset', 'jxnellvh')
 
+  //on attend la connexion avec l'api du cloud
 
   const res = await fetch("https://api.cloudinary.com/v1_1/firewax/image/upload",
   {
@@ -36,10 +43,12 @@ const uploadImage = async e => {
     body:data
   })
 
+
+  // on récupère le contenu de l'image en JSON dans la console
 const file = await res.json()
-console.log(file)
+// console.log(file)
 
-
+// dans le photo du LS, on ajoute le lien de l'image ( secure_url) dans la catégorie photo pour l'upload dans le LocalStorage
 setFormAdd((previous)=>{
     return {
       ...previous,
@@ -47,9 +56,10 @@ setFormAdd((previous)=>{
     }
 })
 
-console.log(image)
+// console.log(image)
 
 }
+
   function add(e) {
     e.preventDefault()
     marinesProvider.add(formAdd)
