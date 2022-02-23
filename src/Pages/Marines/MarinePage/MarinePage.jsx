@@ -46,9 +46,9 @@ export default function MarinePage() {
   //récupérer le nom, prenom, image etc
   let displayMarines = marines.map((marine, indice) => {
     return (
-      <Container key={indice + 1}>
-        <Col>
-          <Card style={{ width: '18rem' }}>
+     
+        <Col className='crudStuff' lg={5} md={5}>
+          <Card className='Card' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={marine.photo} />
             <Card.Body>
               <Card.Title>
@@ -62,7 +62,11 @@ export default function MarinePage() {
               <ListGroupItem>Grade : {marine.grade}</ListGroupItem>
             </ListGroup>
             <Card.Body>
+<<<<<<< HEAD
+              <Button className='button' as={Link} to={'/marines/' + marine.id} variant="warning">
+=======
               <Button className="button-del" as={Link} to={'/marines/' + marine.id} variant="warning">
+>>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
                 Modifier
               </Button>
               <p></p>
@@ -72,7 +76,7 @@ export default function MarinePage() {
             </Card.Body>
           </Card>
         </Col>
-      </Container>
+
     )
   })
   return (
@@ -80,7 +84,11 @@ export default function MarinePage() {
       <Container>
         <Row>
           <Col>
+<<<<<<< HEAD
+            <h1 >Gestion des membres de la Marine</h1>
+=======
             <h1 className="title-marine">Gestion des membres de la Marine</h1>
+>>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
             <hr />
           </Col>
         </Row>
@@ -93,10 +101,11 @@ export default function MarinePage() {
             </div>
           </Col>
         </Row>
+        
+      
       </Container>
-
       <br></br>
-      {displayMarines}
+      <Container className='Container' style={{overflowY:'scroll'}}>{displayMarines}</Container>
     </>
   )
 }
