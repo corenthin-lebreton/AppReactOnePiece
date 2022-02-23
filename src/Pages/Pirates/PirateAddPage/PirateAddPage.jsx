@@ -155,6 +155,7 @@ export default function PirateAddPage() {
               </Button>
 
               <Button
+                 as={Link} to="/"
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"

@@ -140,6 +140,7 @@ export default function ShichibukaiAddPage() {
               </Button>
 
               <Button
+                as={Link} to="/"
                 variant="outline-secondary"
                 className="float-end mx-2"
                 type="reset"
