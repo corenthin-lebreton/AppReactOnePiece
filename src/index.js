@@ -14,6 +14,7 @@ import PirateUpdatePage from './Pages/Pirates/PirateUpdatePage/PirateUpdatePage'
 import ShichibukaiPage from './Pages/Shichibukai/ShichibukaiPage/ShichibukaiPage'
 import ShichibukaiAddPage from './Pages/Shichibukai/ShichibukaiAddPage/ShichibukaiAddPage'
 import ShichibukaiUpdatePage from './Pages/Shichibukai/ShichibukaiUpdatePage/ShichibukaiUpdatePage'
+import '../src/Styles/Index.scss'
 
 ReactDOM.render(
   <React.StrictMode>
