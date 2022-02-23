@@ -34,8 +34,8 @@ export default function PiratePage() {
   let displayPirates = pirates.map((pirate, indice) => {
     return (
 
-        <Col key={indice + 1}>
-          <Card style={{ width: '18rem' }}>
+        <Col lg={5} md={5} key={indice + 1}>
+          <Card className='Card2' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={pirate.photo} />
             <Card.Body>
               <Card.Title>
@@ -83,7 +83,7 @@ export default function PiratePage() {
 
 
       <br></br>
-      <Container className='Container' style={{overflowY:'scroll'}}>{displayPirates}</Container>      
+      <Container key={pirates.id} className='Container2'>{displayPirates}</Container>      
     </>
   )
 }

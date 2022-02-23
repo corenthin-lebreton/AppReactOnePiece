@@ -34,8 +34,8 @@ export default function ShichibukaiPage() {
   let displayShichibukai = shichibukai.map((shichibukai, indice) => {
     return (
 
-        <Col key={indice + 1}>
-          <Card style={{ width: '18rem' }}>
+        <Col  lg={5} md={5} key={indice + 1}>
+          <Card className='Card3' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={shichibukai.photo} />
             <Card.Body>
               <Card.Title>
@@ -86,7 +86,7 @@ export default function ShichibukaiPage() {
       </Container>
 
       <br></br>
-      <Container className='Container' style={{overflowY:'scroll'}}>{displayShichibukai}</Container>     
+      <Container key={shichibukai.id} className='Container3'>{displayShichibukai}</Container>     
       
     </>
   )

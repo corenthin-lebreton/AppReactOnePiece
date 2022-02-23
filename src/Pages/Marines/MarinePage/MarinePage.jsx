@@ -47,7 +47,7 @@ export default function MarinePage() {
   let displayMarines = marines.map((marine, indice) => {
     return (
      
-        <Col className='crudStuff' lg={5} md={5}>
+        <Col lg={5} md={5}>
           <Card className='Card' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={marine.photo} />
             <Card.Body>
@@ -97,7 +97,7 @@ export default function MarinePage() {
       
       </Container>
       <br></br>
-      <Container className='Container' >{displayMarines}</Container>
+      <Container  key={marines.id} className='Container' >{displayMarines}</Container>
     </>
   )
 }

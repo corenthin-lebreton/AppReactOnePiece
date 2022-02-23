@@ -15,7 +15,7 @@
     src: url('../../../polices/Pirate\ Kids.otf') format("woff");
 }
 
-.Container{
+.Container3{
     width: 100%;
     height: auto;
     display: flex;
@@ -24,12 +24,12 @@
     flex-flow: wrap;
 }
 
-.Card{
-    width: 20%;
-    height: auto;
-    margin: 10px;
-    box-sizing: border-box;
-
+.Card3{
+  width: 20%;
+  height: auto;
+  margin: 10px;
+  box-sizing: border-box;
+  transform: translate(100px);
 }
 
 
