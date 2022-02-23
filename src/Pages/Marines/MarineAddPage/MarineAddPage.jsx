@@ -83,7 +83,7 @@ setFormAdd((previous)=>{
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
+                  placeholder="Entrer prenom"
                   value={formAdd.prenom}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -97,7 +97,7 @@ setFormAdd((previous)=>{
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
+                  placeholder="Entrer nom"
                   value={formAdd.nom}
                   onChange={e => {
                     let tmp = { ...formAdd }

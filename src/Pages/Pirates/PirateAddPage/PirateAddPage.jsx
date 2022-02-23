@@ -69,7 +69,7 @@ export default function PirateAddPage() {
                 <Form.Label>Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
+                  placeholder="Entrer prenom"
                   value={formAdd.prenom}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -83,7 +83,7 @@ export default function PirateAddPage() {
                 <Form.Label>Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
+                  placeholder="Entrer nom"
                   value={formAdd.nom}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -98,7 +98,7 @@ export default function PirateAddPage() {
                 <Form.Label>Équipage</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter le nom de l'équipage"
+                  placeholder="Entrer le nom de l'équipage"
                   value={formAdd.equipage}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -113,7 +113,7 @@ export default function PirateAddPage() {
                 <Form.Label>Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Enter le montant de la prime"
+                  placeholder="Entrer le montant de la prime"
                   value={formAdd.prime}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -133,7 +133,7 @@ export default function PirateAddPage() {
               >
                 <Form.Control
                   as="textarea"
-                  placeholder="commentaire presonnalisé"
+                  placeholder="Commentaire presonnalisé"
                   value={formAdd.commentaire}
                   onChange={e => {
                     let tmp = { ...formAdd }

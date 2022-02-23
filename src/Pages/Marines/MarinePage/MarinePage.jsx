@@ -12,7 +12,10 @@ import { useEffect, useState } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f42bbb68baabdcd512b7722c40dffe80dce9aeff
 export default function MarinePage() {
 
   const [marines, setMarines] = useState([])
