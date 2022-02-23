@@ -94,7 +94,6 @@ export default function MarinePage() {
           </Col>
         </Row>
         
-      
       </Container>
       <br></br>
       <Container className='Container' >{displayMarines}</Container>

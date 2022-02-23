@@ -65,10 +65,10 @@ export default function ShichibukaiAddPage() {
           <Col md={6}>
             <Form onSubmit={e => add(e)}>
               <Form.Group className="mb-3">
-                <Form.Label>Prénom</Form.Label>
+                <Form.Label className="title-add">Prénom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter prenom"
+                  placeholder="Entrer prenom"
                   value={formAdd.prenom}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -80,10 +80,10 @@ export default function ShichibukaiAddPage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label className="title-add">Nom</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom"
+                  placeholder="Entrer nom"
                   value={formAdd.nom}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -95,10 +95,10 @@ export default function ShichibukaiAddPage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Prime</Form.Label>
+                <Form.Label className="title-add">Prime</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Enter le montant de la prime"
+                  placeholder="Entrer le montant de la prime"
                   value={formAdd.prime}
                   onChange={e => {
                     let tmp = { ...formAdd }
@@ -109,7 +109,7 @@ export default function ShichibukaiAddPage() {
                 />
               </Form.Group>
 
-              <Form.Label>Commentaire</Form.Label>
+              <Form.Label className="title-add">Commentaire</Form.Label>
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="commentaire"
@@ -129,28 +129,29 @@ export default function ShichibukaiAddPage() {
               </FloatingLabel>
 
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Image du personnage</Form.Label>
+                <Form.Label className="title-add">Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
               </Form.Group>
 
               <hr />
-
-              <Button variant="light" as={Link} to="/shichibukai">
+              <Button variant="success" type="submit" className="button-up">
+                Enregistrer
+              </Button>
+              <p></p>
+              <Button className="button-up" variant="light" as={Link} to="/shichibukai">
                 Retour
               </Button>
-
+              <p></p>
               <Button
                 as={Link} to="/"
                 variant="outline-secondary"
-                className="float-end mx-2"
+                className="button-up"
                 type="reset"
               >
                 Annuler
               </Button>
+              <p></p>
 
-              <Button variant="success" type="submit" className="float-end">
-                Enregistrer
-              </Button>
             </Form>
           </Col>
         </Row>

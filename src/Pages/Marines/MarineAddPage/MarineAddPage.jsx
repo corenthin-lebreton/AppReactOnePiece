@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
+
 export default function MarineAddPage() {
 
 
@@ -80,7 +81,7 @@ setFormAdd((previous)=>{
           <Col md={6}>
             <Form onSubmit={e => add(e)}>
               <Form.Group className="mb-3">
-                <Form.Label>Prénom</Form.Label>
+                <Form.Label className="title-modif">Prénom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Entrer prenom"
@@ -94,7 +95,7 @@ setFormAdd((previous)=>{
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label className="title-modif">Nom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Entrer nom"
@@ -108,7 +109,7 @@ setFormAdd((previous)=>{
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Grade</Form.Label>
+                <Form.Label className="title-modif">Grade</Form.Label>
                 <Form.Select onChange={e => {
                     let tmp = { ...formAdd }
                     tmp.grade = e.target.value
@@ -139,7 +140,7 @@ setFormAdd((previous)=>{
                  </Form.Select>
                 </Form.Group>
 
-              <Form.Label>Commentaire</Form.Label>
+              <Form.Label className="title-modif">Commentaire</Form.Label>
 
               <FloatingLabel
                 controlId="floatingTextarea"
@@ -159,7 +160,7 @@ setFormAdd((previous)=>{
                 />
               </FloatingLabel>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Image du personnage</Form.Label>
+                <Form.Label className="title-modif">Image du personnage</Form.Label>
                 <Form.Control type="file"
                   onChange={uploadImage} 
                   
@@ -168,21 +169,22 @@ setFormAdd((previous)=>{
 
               <hr />
 
-              <Button variant="light" as={Link} to="/marines">
+              <Button variant="success" type="submit" className="button-up">
+                Enregistrer
+              </Button>
+              <p></p>
+              <Button className="button-up" variant="light" as={Link} to="/marines">
                 Retour
               </Button>
-
+              <p></p>
               <Button
                 variant="outline-secondary"
-                className="float-end mx-2"
+                className="button-up"
                 as={Link} to="/"
               >
                 Annuler
               </Button>
 
-              <Button variant="success" type="submit" className="float-end">
-                Enregistrer
-              </Button>
             </Form>
           </Col>
         </Row>
