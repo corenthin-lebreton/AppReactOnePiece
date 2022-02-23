@@ -62,11 +62,7 @@ export default function MarinePage() {
               <ListGroupItem>Grade : {marine.grade}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-<<<<<<< HEAD
-              <Button className='button' as={Link} to={'/marines/' + marine.id} variant="warning">
-=======
               <Button className="button-del" as={Link} to={'/marines/' + marine.id} variant="warning">
->>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
                 Modifier
               </Button>
               <p></p>
@@ -84,11 +80,7 @@ export default function MarinePage() {
       <Container>
         <Row>
           <Col>
-<<<<<<< HEAD
-            <h1 >Gestion des membres de la Marine</h1>
-=======
             <h1 className="title-marine">Gestion des membres de la Marine</h1>
->>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
             <hr />
           </Col>
         </Row>
