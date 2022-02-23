@@ -83,7 +83,7 @@ export default function ShichibukaiUpdatePage() {
           <Col md={6}>
             <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
-                <Form.Label>Prénom</Form.Label>
+                <Form.Label className="title-modif">Prénom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le prenom"
@@ -97,7 +97,7 @@ export default function ShichibukaiUpdatePage() {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label className="title-modif">Nom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le nom"
@@ -110,9 +110,9 @@ export default function ShichibukaiUpdatePage() {
                   required
                 />
               </Form.Group>
-
+                  
               <Form.Group className="mb-3">
-                <Form.Label>Prime</Form.Label>
+                <Form.Label className="title-modif">Prime</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="Modifier le montant de la prime"
@@ -126,7 +126,7 @@ export default function ShichibukaiUpdatePage() {
                 />
               </Form.Group>
 
-              <Form.Label>Commentaire</Form.Label>
+              <Form.Label className="title-modif">Commentaire</Form.Label>
               <FloatingLabel
                 controlId="floatingTextarea"
                 label="commentaire"
@@ -146,16 +146,20 @@ export default function ShichibukaiUpdatePage() {
                 />
               </FloatingLabel>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Image du personnage</Form.Label>
+                <Form.Label className="title-modif">Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
               </Form.Group>
 
               <hr />
 
+              <Button className="button-up" variant="success" type="submit">
+                Enregistrer
+              </Button>
+              <p></p>
               <Button className="button-up" variant="light" as={Link} to="/shichibukai">
                 Retour
               </Button>
-
+              <p></p>
               <Button
                 className="button-up"
                 variant="outline-secondary"
@@ -165,9 +169,6 @@ export default function ShichibukaiUpdatePage() {
                 Annuler
               </Button>
 
-              <Button className="button-up" variant="success" type="submit">
-                Enregistrer
-              </Button>
             </Form>
           </Col>
         </Row>

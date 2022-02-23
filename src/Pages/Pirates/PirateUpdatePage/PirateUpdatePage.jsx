@@ -85,7 +85,7 @@ export default function PirateUpdatePage() {
           <Col md={6}>
             <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
-                <Form.Label>Prénom</Form.Label>
+                <Form.Label className="title-modif">Prénom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le prenom"
@@ -99,7 +99,7 @@ export default function PirateUpdatePage() {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label className="title-modif">Nom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le nom"
@@ -113,7 +113,7 @@ export default function PirateUpdatePage() {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Équipage</Form.Label>
+                <Form.Label className="title-modif">Équipage</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le nom de l'équipage"
@@ -128,7 +128,7 @@ export default function PirateUpdatePage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Prime</Form.Label>
+                <Form.Label className="title-modif">Prime</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="Modifier le montant de la prime"
@@ -142,7 +142,7 @@ export default function PirateUpdatePage() {
                 />
               </Form.Group>
 
-              <Form.Label>Commentaire</Form.Label>
+              <Form.Label className="title-modif">Commentaire</Form.Label>
 
               <FloatingLabel
                 controlId="floatingTextarea"
@@ -163,28 +163,29 @@ export default function PirateUpdatePage() {
                 />
               </FloatingLabel>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Image du personnage</Form.Label>
+                <Form.Label className="title-modif">Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
               </Form.Group>
 
               <hr />
 
-              <Button variant="light" as={Link} to="/pirates">
+              <Button variant="success" type="submit" className="button-up">
+                Enregistrer
+              </Button>
+              <p></p>
+              <Button className="button-up"variant="light" as={Link} to="/pirates">
                 Retour
               </Button>
-
+              <p></p>
               <Button
                 variant="outline-secondary"
-                className="float-end mx-2"
+                className="button-up"
                 type="reset"
                 onClick={reset}
               >
                 Annuler
               </Button>
 
-              <Button variant="success" type="submit" className="float-end">
-                Enregistrer
-              </Button>
             </Form>
           </Col>
         </Row>

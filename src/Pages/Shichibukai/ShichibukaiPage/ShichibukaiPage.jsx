@@ -56,6 +56,7 @@ export default function ShichibukaiPage() {
               >
                 Modifier
               </Button>
+              <p></p>
               <Button className="button-del" variant="danger" onClick={() => remove(shichibukai)}>
                 Supprimer
               </Button>

@@ -17,3 +17,61 @@
 .button{
     margin-right: 30px;
 }
+
+.title-pirate{
+    background-color : black;
+    opacity: 0.5;
+    color: rgb(211, 229, 247);
+    font-family: "Pirate Kids";
+    text-align: center;
+}
+
+.button-pirate {
+  background-color: transparent;
+  border: 2px solid #53a2f1;
+  box-sizing: border-box;
+  color: #00132C;
+  font-family: "Pirate Kids";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-pirate:hover,
+.button-pirate:active {
+  outline: 0;
+}
+
+.button-pirate:hover {
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+
+.button-pirate:before {
+  background-color: #b8dfff;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+.button-pirate:hover:before {
+  background-color: #79b0f8;
+}
+
+@media (min-width: 768px) {
+  .button-pirate {
+    padding: 16px 32px;
+  }
+}

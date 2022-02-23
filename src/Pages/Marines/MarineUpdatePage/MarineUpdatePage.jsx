@@ -170,7 +170,10 @@ return (
               </Form.Group>
 
               <hr />
-
+              <Button className="" type="submit" className="button-up">
+                Enregistrer
+              </Button>
+              <p></p>
               <Button className="button-up" variant="light" as={Link} to="/marines">
                 Retour
               </Button>
@@ -184,9 +187,7 @@ return (
                 Annuler
               </Button>
               <p></p>
-              <Button className="" type="submit" className="button-up">
-                Enregistrer
-              </Button>
+
             </Form>
           </Col>
         </Row>

@@ -50,10 +50,11 @@ export default function PiratePage() {
               <ListGroupItem>Prime : {pirate.prime}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button className='button'  as={Link} to={'/pirates/' + pirate.id} variant="warning">
+              <Button className='button-del'  as={Link} to={'/pirates/' + pirate.id} variant="warning">
                 Modifier
               </Button>
-              <Button variant="danger" onClick={() => remove(pirate)}>
+              <p></p>
+              <Button className='button-del' variant="danger" onClick={() => remove(pirate)}>
                 Supprimer
               </Button>
             </Card.Body>
@@ -66,14 +67,14 @@ export default function PiratePage() {
       <Container>
         <Row>
           <Col>
-            <h1>Gestion des Pirates</h1>
+            <h1 className="title-pirate">Gestion des Pirates</h1>
             <hr />
           </Col>
         </Row>
         <Row>
           <Col md={12}>
             <div className="mb-3">
-              <Button as={Link} to="/pirates/add">
+              <Button className="button-pirate" as={Link} to="/pirates/add">
                 Ajouter un pirate
               </Button>
             </div>
