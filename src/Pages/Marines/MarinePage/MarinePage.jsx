@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
-
 export default function MarinePage() {
 
   const [marines, setMarines] = useState([])
@@ -63,11 +62,16 @@ export default function MarinePage() {
               <ListGroupItem>Grade : {marine.grade}</ListGroupItem>
             </ListGroup>
             <Card.Body>
+<<<<<<< HEAD
               <Button className='button' as={Link} to={'/marines/' + marine.id} variant="warning">
+=======
+              <Button className="button-del" as={Link} to={'/marines/' + marine.id} variant="warning">
+>>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
                 Modifier
               </Button>
-              <Button variant="danger" onClick={() => remove(marine)}>
-                Supprimer
+              <p></p>
+              <Button className="button-del" onClick={() => remove(marine)}>
+                Supprimer 
               </Button>
             </Card.Body>
           </Card>
@@ -77,17 +81,21 @@ export default function MarinePage() {
   })
   return (
     <>
-      <Container >
+      <Container>
         <Row>
           <Col>
+<<<<<<< HEAD
             <h1 >Gestion des membres de la Marine</h1>
+=======
+            <h1 className="title-marine">Gestion des membres de la Marine</h1>
+>>>>>>> 87b411e104711d159132f00700c8a27ce819b83a
             <hr />
           </Col>
         </Row>
         <Row>
           <Col md={5}>
-            <div className="mb-3">
-              <Button as={Link} to="/marines/add">
+            <div>
+              <Button className="button-marine" as={Link} to="/marines/add">
                 Ajouter un membre de la Marine
               </Button>
             </div>
