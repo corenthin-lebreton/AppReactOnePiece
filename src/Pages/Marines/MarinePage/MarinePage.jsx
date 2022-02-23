@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MarinesProvider } from '../../../Providers/MarinesProviders'
 
+
+
 export default function MarinePage() {
 
   const [marines, setMarines] = useState([])
