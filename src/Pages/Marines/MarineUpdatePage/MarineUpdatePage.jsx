@@ -84,7 +84,7 @@ return (
           <Col md={6}>
             <Form onSubmit={e => update(e)}>
               <Form.Group className="mb-3">
-                <Form.Label>Prénom</Form.Label>
+                <Form.Label className="title-modif">Prénom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le prenom"
@@ -98,7 +98,7 @@ return (
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label className="title-modif">Nom</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Modifier le nom"
@@ -112,7 +112,7 @@ return (
                 />
               </Form.Group>
 <Form.Group className="mb-3">
-                <Form.Label>Grade</Form.Label>
+                <Form.Label className="title-modif">Grade</Form.Label>
                 <Form.Select
                   value={formUpdate.grade}
                   onChange={e => {
@@ -144,7 +144,7 @@ return (
                   <option>Homme de corvée</option>
                 </Form.Select>
               </Form.Group>
-              <Form.Label>Commentaire</Form.Label>
+              <Form.Label className="title-modif">Commentaire</Form.Label>
 
               <FloatingLabel
                 controlId="floatingTextarea"
@@ -165,7 +165,7 @@ return (
                 />
               </FloatingLabel>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Image du personnage</Form.Label>
+                <Form.Label className="title-modif">Image du personnage</Form.Label>
                 <Form.Control type="file" onChange={uploadImage} />
               </Form.Group>
 
@@ -184,7 +184,7 @@ return (
                 Annuler
               </Button>
               <p></p>
-              <Button type="submit" className="button-up">
+              <Button className="" type="submit" className="button-up">
                 Enregistrer
               </Button>
             </Form>

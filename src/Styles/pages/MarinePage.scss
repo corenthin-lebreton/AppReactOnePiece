@@ -1,21 +1,51 @@
 @font-face {
-    font-family: "China";
-    src: url('../../../polices/China.ttf') format("woff");
+  font-family: "China";
+  src: url('../../../polices/China.ttf') format("woff");
 }
 @font-face {
-    font-family: "Chinese Cally TFB";
-    src: url('../../../polices/Chinese\ Cally\ TFB.ttf') format("woff");
+  font-family: "Chinese Cally TFB";
+  src: url('../../../polices/Chinese\ Cally\ TFB.ttf') format("woff");
 }
 @font-face {
-    font-family: "Japanese";
-    src: url('../../../polices/Japanese.ttf') format("woff");
+  font-family: "Japanese";
+  src: url('../../../polices/Japanese.ttf') format("woff");
 }
 @font-face {
-    font-family: "Pirate Kids";
-    src: url('../../../polices/Pirate\ Kids.otf') format("woff");
+  font-family: "Pirate Kids";
+  src: url('../../../polices/Pirate\ Kids.otf') format("woff");
 }
 
 
+
+.Container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.Card{
+    width: 20%;
+    height: auto;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.button{
+    margin-right: 30px;
+}
+
+.crudStuff{
+    padding: 5px;
+    border-radius: 7px;
+    margin-top: 4vh;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
+    height: 70vh;
+}
 
 .title-marine{
     background-color : black;
