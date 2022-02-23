@@ -52,7 +52,7 @@ useEffect(()=>{
             </Col> 
           </Row> 
         <h6>Membres de la Marines <Badge bg="info">{dataMarine.length}</Badge></h6>
-        <h6> Membres de la Piraterie <Badge bg="warning">{dataPirate.length}</Badge></h6>
+        <h6> Membres de la Piraterie <Badge bg="dark">{dataPirate.length}</Badge></h6>
         <h6>Membres des Shichibukai <Badge bg="danger">{dataShichibukai.length}</Badge></h6>
         </Container>
       </main>
