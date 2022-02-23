@@ -1,3 +1,20 @@
+@font-face {
+    font-family: "China";
+    src: url('../../../polices/China.ttf') format("woff");
+}
+@font-face {
+    font-family: "Chinese Cally TFB";
+    src: url('../../../polices/Chinese\ Cally\ TFB.ttf') format("woff");
+}
+@font-face {
+    font-family: "Japanese";
+    src: url('../../../polices/Japanese.ttf') format("woff");
+}
+@font-face {
+    font-family: "Pirate Kids";
+    src: url('../../../polices/Pirate\ Kids.otf') format("woff");
+}
+
 .Container{
     width: 100%;
     height: auto;
@@ -15,6 +32,113 @@
 
 }
 
-.button{
-    margin-right: 30px;
+
+.title-shichibukai{
+    background-color : black;
+    opacity: 0.5;
+    color: rgb(211, 229, 247);
+    font-family: "Pirate Kids";
+    text-align: center;
 }
+
+.button-shichibukai {
+    background-color: transparent;
+    border: 2px solid #53a2f1;
+    box-sizing: border-box;
+    color: #00132C;
+    font-family: "Pirate Kids";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 16px 23px;
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-shichibukai:hover,
+  .button-shichibukai:active {
+    outline: 0;
+  }
+  
+  .button-shichibukai:hover {
+    background-color: transparent;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .button-shichibukai:before {
+    background-color: #b8dfff;
+    content: "";
+    height: calc(100% + 3px);
+    position: absolute;
+    right: -7px;
+    top: -9px;
+    transition: background-color 300ms ease-in;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .button-shichibukai:hover:before {
+    background-color: #79b0f8;
+  }
+  
+  @media (min-width: 768px) {
+    .button-shichibukai {
+      padding: 16px 32px;
+    }
+  }
+
+  .button-del {
+    align-items: center;
+    background-color: initial;
+    background-image: linear-gradient(#464d55, #25292e);
+    border-radius: 8px;
+    border-width: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    font-family: "Pirate Kids" ;
+    font-size: 18px;
+    height: 40px;
+    width: 250px;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    overflow: hidden;
+    padding: 0 32px;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all 150ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  
+  .button-del:hover {
+    box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+    opacity: .85;
+    color:rgb(0, 0, 0);
+  }
+  
+  .button-del:active {
+    outline: 0;
+  }
+  
+  .button-del:focus {
+    box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
+  }
+  
+  @media (max-width: 420px) {
+    .button-del {
+      height: 48px;
+    }
+  }
+  
+

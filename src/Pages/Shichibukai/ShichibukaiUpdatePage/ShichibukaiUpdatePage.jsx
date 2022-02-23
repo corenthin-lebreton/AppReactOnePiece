@@ -152,20 +152,20 @@ export default function ShichibukaiUpdatePage() {
 
               <hr />
 
-              <Button variant="light" as={Link} to="/shichibukai">
+              <Button className="button-up" variant="light" as={Link} to="/shichibukai">
                 Retour
               </Button>
 
               <Button
+                className="button-up"
                 variant="outline-secondary"
-                className="float-end mx-2"
                 type="reset"
                 onClick={reset}
               >
                 Annuler
               </Button>
 
-              <Button variant="success" type="submit" className="float-end">
+              <Button className="button-up" variant="success" type="submit">
                 Enregistrer
               </Button>
             </Form>

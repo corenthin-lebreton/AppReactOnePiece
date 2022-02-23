@@ -49,14 +49,14 @@ export default function ShichibukaiPage() {
               <ListGroupItem>Prime : {shichibukai.prime}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button className='button' 
+              <Button className="button-del" 
                 as={Link}
                 to={'/shichibukai/' + shichibukai.id}
                 variant="warning"
               >
                 Modifier
               </Button>
-              <Button variant="danger" onClick={() => remove(shichibukai)}>
+              <Button className="button-del" variant="danger" onClick={() => remove(shichibukai)}>
                 Supprimer
               </Button>
             </Card.Body>
@@ -70,14 +70,14 @@ export default function ShichibukaiPage() {
       <Container>
         <Row>
           <Col>
-            <h1>Gestion des Shichibukais</h1>
+            <h1 className="title-shichibukai">Gestion des Shichibukais</h1>
             <hr />
           </Col>
         </Row>
         <Row>
           <Col md={12}>
             <div className="mb-3">
-              <Button as={Link} to="/shichibukai/add">
+              <Button className="button-shichibukai" as={Link} to="/shichibukai/add">
                 Ajouter un shichibukai
               </Button>
             </div>
