@@ -171,20 +171,20 @@ return (
 
               <hr />
 
-              <Button variant="light" as={Link} to="/marines">
+              <Button className="button-up" variant="light" as={Link} to="/marines">
                 Retour
               </Button>
-
+              <p></p>
               <Button
                 variant="outline-secondary"
-                className="float-end mx-2"
+                className="button-up"
                 type="reset"
                 onClick={reset}
               >
                 Annuler
               </Button>
-
-              <Button variant="success" type="submit" className="float-end">
+              <p></p>
+              <Button type="submit" className="button-up">
                 Enregistrer
               </Button>
             </Form>
