@@ -22,7 +22,7 @@ export default function ShichibukaiPage() {
 
   function remove(shichibukai) {
     let rep = window.confirm(
-      `Etes-vous sur de vouloir supprimer le ${shichibukai.prenom} ${shichibukai.nom}`
+      `Etes-vous sur de vouloir supprimer le Shichibukai ${shichibukai.prenom} ${shichibukai.nom}`
     )
     if (rep) {
       ShichibukaiProviders.remove(shichibukai)
@@ -33,8 +33,8 @@ export default function ShichibukaiPage() {
 
   let displayShichibukai = shichibukai.map((shichibukai, indice) => {
     return (
-      <Container key={indice + 1}>
-        <Col>
+
+        <Col key={indice + 1}>
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={shichibukai.photo} />
             <Card.Body>
@@ -49,7 +49,7 @@ export default function ShichibukaiPage() {
               <ListGroupItem>Prime : {shichibukai.prime}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button
+              <Button className='button' 
                 as={Link}
                 to={'/shichibukai/' + shichibukai.id}
                 variant="warning"
@@ -62,7 +62,7 @@ export default function ShichibukaiPage() {
             </Card.Body>
           </Card>
         </Col>
-      </Container>
+
     )
   })
   return (
@@ -86,7 +86,8 @@ export default function ShichibukaiPage() {
       </Container>
 
       <br></br>
-      {displayShichibukai}
+      <Container className='Container' style={{overflowY:'scroll'}}>{displayShichibukai}</Container>     
+      
     </>
   )
 }

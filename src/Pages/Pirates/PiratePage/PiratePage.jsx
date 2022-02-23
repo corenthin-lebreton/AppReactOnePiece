@@ -33,8 +33,8 @@ export default function PiratePage() {
 
   let displayPirates = pirates.map((pirate, indice) => {
     return (
-      <Container key={indice + 1}>
-        <Col>
+
+        <Col key={indice + 1}>
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={pirate.photo} />
             <Card.Body>
@@ -50,7 +50,7 @@ export default function PiratePage() {
               <ListGroupItem>Prime : {pirate.prime}</ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button as={Link} to={'/pirates/' + pirate.id} variant="warning">
+              <Button className='button'  as={Link} to={'/pirates/' + pirate.id} variant="warning">
                 Modifier
               </Button>
               <Button variant="danger" onClick={() => remove(pirate)}>
@@ -59,7 +59,6 @@ export default function PiratePage() {
             </Card.Body>
           </Card>
         </Col>
-      </Container>
     )
   })
   return (
@@ -82,8 +81,9 @@ export default function PiratePage() {
         </Row>
       </Container>
 
+
       <br></br>
-      {displayPirates}
+      <Container className='Container' style={{overflowY:'scroll'}}>{displayPirates}</Container>      
     </>
   )
 }

@@ -1,3 +1,31 @@
-.Image{
-    background-image: url("../Images/Marineford.png")
+.Container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.Card{
+    width: 20%;
+    height: auto;
+    margin: 10px;
+    box-sizing: border-box;
+
+
+}
+
+.button{
+    margin-right: 30px;
+}
+
+.crudStuff{
+    padding: 5px;
+    border-radius: 7px;
+    margin-top: 4vh;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
+    height: 70vh;
 }
